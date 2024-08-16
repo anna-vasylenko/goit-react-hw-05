@@ -37,3 +37,7 @@ img {
 body {
   background-color: var(--color-white);
 }
+
+.active {
+  color: red;
+}
