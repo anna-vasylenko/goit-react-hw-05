@@ -1,0 +1,24 @@
+.movieCast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.actorItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+  padding: 5px;
+  width: 210px;
+  height: 250px;
+  & img {
+    width: 150px;
+    height: 200px;
+  }
+}

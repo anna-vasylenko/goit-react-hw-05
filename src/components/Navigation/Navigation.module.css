@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px;
+  background-color: var(--color-acc);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  & li {
+    font-size: 24px;
+  }
+}

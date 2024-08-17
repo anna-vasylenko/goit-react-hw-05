@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { getMovieDetails } from "../../services/api";
+import s from "./MovieDetailPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -30,29 +31,35 @@ const MovieDetailsPage = () => {
   if (!movie) return;
 
   return (
-    <div>
-      <Link to={goBackRef.current}>Go Back</Link>
-      {movie.backdrop_path && (
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-          alt={movie.title}
-        />
-      )}
-      <h2>{movie.title}</h2>
-      <p>User Score: {movie.vote_average.toFixed(1)}</p>
-      <div>
-        <p>
-          Overwiew <span>{movie.overview}</span>
-        </p>
+    <div className={s.wrapper}>
+      <Link to={goBackRef.current} className={s.link}>
+        Go Back
+      </Link>
+      <div className={s.infoWrapper}>
+        {movie.backdrop_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+            alt={movie.title}
+          />
+        )}
+        <div className={s.dscrWrapper}>
+          <h2>{movie.title}</h2>
+          <p>User Score: {movie.vote_average.toFixed(1)}</p>
+          <div>
+            <p>
+              Overwiew <span>{movie.overview}</span>
+            </p>
 
-        <p>
-          Genres
-          <span> {movie.genres.map((genre) => genre.name).join(", ")}</span>
-        </p>
+            <p>
+              Genres
+              <span> {movie.genres.map((genre) => genre.name).join(", ")}</span>
+            </p>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>Additional information</p>
-        <ul>
+      <div className={s.information}>
+        <p className={s.title}>Additional information</p>
+        <ul className={s.list}>
           <li>
             <NavLink to="cast">Cast</NavLink>
           </li>
