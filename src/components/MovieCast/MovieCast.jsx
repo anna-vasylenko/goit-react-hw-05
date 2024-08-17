@@ -27,7 +27,7 @@ const MovieCast = () => {
             {item.profile_path && (
               <img
                 src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
-                alt="item.name"
+                alt={item.name}
               />
             )}
             <p>{item.name}</p>

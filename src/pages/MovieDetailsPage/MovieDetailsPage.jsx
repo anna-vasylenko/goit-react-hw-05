@@ -5,8 +5,8 @@ import {
   useParams,
   useLocation,
 } from "react-router-dom";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { getMovieDetails } from "../../services/api";
-import { useEffect, useRef, useState } from "react";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -27,17 +27,17 @@ const MovieDetailsPage = () => {
     fetchMovieById();
   }, [movieId]);
 
-  if (!movie) {
-    return <h2>Loading...</h2>;
-  }
+  if (!movie) return;
 
   return (
     <div>
       <Link to={goBackRef.current}>Go Back</Link>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-        alt={movie.title}
-      />
+      {movie.backdrop_path && (
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+          alt={movie.title}
+        />
+      )}
       <h2>{movie.title}</h2>
       <p>User Score: {movie.vote_average.toFixed(1)}</p>
       <div>
@@ -61,7 +61,9 @@ const MovieDetailsPage = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
